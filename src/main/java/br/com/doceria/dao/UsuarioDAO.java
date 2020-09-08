@@ -46,7 +46,7 @@ public class UsuarioDAO {
         return consulta.getResultList();
     }
 
-    public void excluir(Integer id) {
+    public void excluir(Integer id){
         EntityTransaction tx = manager.getTransaction();
         Usuario usuario = manager.find(Usuario.class, id);
         try {

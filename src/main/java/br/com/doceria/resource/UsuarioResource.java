@@ -28,7 +28,8 @@ public class UsuarioResource {
         try {
             usuarioAS.salvar(usuario);
         } catch (Exception e) {
-            System.out.println("Erro ao Salvar Usuario" + Response.status(500));
+            Response.status(500);
+            System.out.println("Erro ao Salvar Usuario" + e.getMessage());
         }
         return Response.status(201).entity(usuario).build();
     }

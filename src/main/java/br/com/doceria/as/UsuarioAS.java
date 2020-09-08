@@ -22,7 +22,7 @@ public class UsuarioAS {
         try {
             usuarioDAO.salvar(usuario);
         } catch (Exception ex) {
-            System.out.println(500 + "Erro ao salvar usuario");
+            System.out.println(500 + "Erro ao salvar usuario"+ex.getMessage());
         }
     }
 
