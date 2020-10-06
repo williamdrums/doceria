@@ -15,7 +15,7 @@ public class UsuarioDAO {
         this.manager = manager;
     }
 
-    public void salvar(Usuario usuario) {
+    public void save(Usuario usuario) {
         EntityTransaction tx = manager.getTransaction();
         try {
             if (usuario.getId() == null) {
@@ -24,12 +24,11 @@ public class UsuarioDAO {
                 tx.commit();
             }
         } catch (Exception e) {
-
             System.out.println("Não foi Possivel Salvar Usuario" + e.getMessage());
         }
     }
 
-    public Usuario editar(Usuario usuario) {
+    public Usuario update(Usuario usuario) {
         EntityTransaction tx = manager.getTransaction();
         tx.begin();
         Usuario usuarioSalvo = manager.merge(usuario);
@@ -37,16 +36,16 @@ public class UsuarioDAO {
         return usuarioSalvo;
     }
 
-    public Usuario buscarPorId(Integer id) {
+    public Usuario findById(Integer id) {
         return manager.find(Usuario.class, id);
     }
 
-    public List<Usuario> buscarTodos() {
+    public List<Usuario> findAll() {
         Query consulta = manager.createNamedQuery("Usuario.FindAll");
         return consulta.getResultList();
     }
 
-    public void excluir(Integer id){
+    public void delete(Integer id) {
         EntityTransaction tx = manager.getTransaction();
         Usuario usuario = manager.find(Usuario.class, id);
         try {

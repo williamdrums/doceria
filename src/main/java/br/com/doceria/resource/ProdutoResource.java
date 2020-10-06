@@ -41,7 +41,7 @@ public class ProdutoResource {
         return Response.status(200).entity(produtoAS.findAll()).build(); }
 
     @PUT
-    @Path("/atualiza/{id}")
+    @Path("/editar/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response productUpdateResource(@PathParam("id") Integer id, Produto produto) {

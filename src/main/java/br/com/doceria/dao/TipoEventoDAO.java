@@ -20,7 +20,7 @@ public class TipoEventoDAO {
 
         EntityTransaction tx = manager.getTransaction();
         try {
-            if (tipoEvento == null) {
+            if (tipoEvento.getId() == null) {
                 tx.begin();
                 manager.persist(tipoEvento);
                 tx.commit();

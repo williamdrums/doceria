@@ -15,34 +15,34 @@ public class ClienteAS {
     EntityManager manager = new JPAUtil().getEntityManager();
     ClienteDAO clienteDAO = new ClienteDAO(manager);
 
-    public void salvar(Cliente cliente) {
+    public void save(Cliente cliente) {
         try {
-            clienteDAO.salvar(cliente);
+            clienteDAO.save(cliente);
         } catch (Exception e) {
             System.out.println("Erro ao Salvar Cliente");
         }
     }
 
-    public Cliente editar(Cliente cliente) {
-        Cliente clienteEditado = clienteDAO.buscarPorId(cliente.getId());
+    public Cliente update(Cliente cliente) {
+        Cliente clienteEditado = clienteDAO.findById(cliente.getId());
 
         clienteEditado.setNome(cliente.getNome());
         clienteEditado.setTelefone(cliente.getTelefone());
         clienteEditado.setEmail(cliente.getEmail());
-        Cliente clienteAtualizado = clienteDAO.editar(clienteEditado);
+        Cliente clienteAtualizado = clienteDAO.update(clienteEditado);
         return clienteAtualizado;
     }
 
-    public List<Cliente> listar() {
-        return clienteDAO.buscarTodos();
+    public List<Cliente> findAll() {
+        return clienteDAO.findAll();
     }
 
-    public void excluir(Integer id) {
+    public void delete(Integer id) {
         try {
-            clienteDAO.excluir(id);
+            clienteDAO.delete(id);
         } catch (Exception e) {
             System.out.println("Erro ao tentar excluir usuario");
         }
-        clienteDAO.excluir(id);
+        clienteDAO.delete(id);
     }
 }

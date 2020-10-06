@@ -16,10 +16,10 @@ public class ClienteDAO {
         this.manager = manager;
     }
 
-    public void salvar(Cliente cliente) {
+    public void save(Cliente cliente) {
         EntityTransaction tx = manager.getTransaction();
         try {
-            if (cliente == null) {
+            if (cliente.getId() == null) {
                 tx.begin();
                 manager.persist(cliente);
                 tx.commit();
@@ -30,12 +30,12 @@ public class ClienteDAO {
         }
     }
 
-    public Cliente buscarPorId(Integer id) {
+    public Cliente findById(Integer id) {
         Cliente cliente = manager.find(Cliente.class, id);
         return cliente;
     }
 
-    public Cliente editar(Cliente cliente) {
+    public Cliente update(Cliente cliente) {
         EntityTransaction tx = manager.getTransaction();
         tx.begin();
         Cliente clienteAtualizado = manager.merge(cliente);
@@ -43,7 +43,7 @@ public class ClienteDAO {
         return clienteAtualizado;
     }
 
-    public void excluir(Integer id) {
+    public void delete(Integer id) {
         EntityTransaction tx = manager.getTransaction();
         Cliente cliente = manager.find(Cliente.class, id);
         try {
@@ -56,7 +56,7 @@ public class ClienteDAO {
         }
     }
 
-    public List<Cliente> buscarTodos() {
+    public List<Cliente> findAll() {
         Query consulta = manager.createNamedQuery("Cliente.FindAll");
         return consulta.getResultList();
     }

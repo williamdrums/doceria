@@ -31,8 +31,9 @@ public class CerimonialAS {
     public Cerimonial update(Cerimonial cerimonial) {
 
         Cerimonial cerimonialUpdate = cerimonialDAO.findById(cerimonial.getId());
-        cerimonialUpdate.setDecricao(cerimonial.getDecricao());
-        return cerimonialUpdate;
+        cerimonialUpdate.setDescricao(cerimonial.getDescricao());
+        Cerimonial novoCerimonial=cerimonialDAO.update(cerimonialUpdate);
+        return novoCerimonial;
     }
 
     public void delete(Integer id) {

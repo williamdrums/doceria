@@ -17,35 +17,35 @@ public class UsuarioAS {
     public UsuarioAS() {
     }
 
-    public void salvar(Usuario usuario) {
+    public void save(Usuario usuario) {
 
         try {
-            usuarioDAO.salvar(usuario);
+            usuarioDAO.save(usuario);
         } catch (Exception ex) {
             System.out.println(500 + "Erro ao salvar usuario"+ex.getMessage());
         }
     }
 
-    public Usuario editar(Usuario usuario) {
-        Usuario usuarioUpdate = usuarioDAO.buscarPorId(usuario.getId());
+    public Usuario update(Usuario usuario) {
+        Usuario usuarioUpdate = usuarioDAO.findById(usuario.getId());
 
         usuarioUpdate.setNome(usuario.getNome());
         usuarioUpdate.setEmail(usuario.getEmail());
         usuarioUpdate.setSenha(usuario.getSenha());
-        Usuario usuarioRetorno = usuarioDAO.editar(usuarioUpdate);
+        Usuario usuarioRetorno = usuarioDAO.update(usuarioUpdate);
 
         return usuarioRetorno;
     }
 
-    public void excluir(Integer id) {
+    public void delete(Integer id) {
         try {
-            usuarioDAO.excluir(id);
+            usuarioDAO.delete(id);
         } catch (Exception e) {
             System.out.println("Erro ao tentar excluir usuario");
         }
     }
 
-    public List<Usuario> listar() {
-        return usuarioDAO.buscarTodos();
+    public List<Usuario> findAll() {
+        return usuarioDAO.findAll();
     }
 }

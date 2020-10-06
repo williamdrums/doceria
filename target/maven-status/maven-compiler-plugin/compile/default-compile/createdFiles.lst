@@ -1,8 +1,8 @@
-br/com/doceria/entity/ItemPedido.class
 br/com/doceria/as/ProdutoAS.class
 br/com/doceria/util/JPAUtil.class
 br/com/doceria/resource/ClienteResource.class
 br/com/doceria/entity/Pedido.class
+br/com/doceria/as/TipoEventoAS.class
 br/com/doceria/entity/Usuario.class
 br/com/doceria/resource/ProdutoResource.class
 br/com/doceria/resource/UsuarioResource.class
@@ -10,9 +10,14 @@ br/com/doceria/as/UsuarioAS.class
 br/com/doceria/as/ClienteAS.class
 br/com/doceria/entity/Produto.class
 br/com/doceria/entity/Cliente.class
+br/com/doceria/resource/TipoEventoResource.class
 br/com/doceria/entity/Cerimonial.class
 br/com/doceria/dao/UsuarioDAO.class
 br/com/doceria/app/DoceriaApplication.class
 br/com/doceria/entity/TipoEvento.class
 br/com/doceria/dao/ClienteDAO.class
+br/com/doceria/resource/CerimonialResource.class
+br/com/doceria/dao/TipoEventoDAO.class
+br/com/doceria/dao/CerimonialDAO.class
 br/com/doceria/dao/ProdutoDAO.class
+br/com/doceria/as/CerimonialAS.class

@@ -1,6 +1,5 @@
 package br.com.doceria.entity;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 
 @Entity
@@ -8,7 +7,7 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name= "Cerimonial.FindAll",query = "SELECT c FROM Cerimonial c ORDER BY c.id"),
         @NamedQuery(name="Cerimonial.FindById",query="SELECT c FROM Cerimonial c WHERE c.id = :id"),
-        @NamedQuery(name = "Cerimonial.FindByEvent",query = "SELECT c FROM Cerimonial c WHERE c.decricao =: descricao")
+        @NamedQuery(name = "Cerimonial.FindByEvent",query = "SELECT c FROM Cerimonial c WHERE c.descricao =:descricao")
 })
 public class Cerimonial {
 
@@ -17,14 +16,14 @@ public class Cerimonial {
     @Column(name = "id")
     private Integer id;
     @Column(name = "descricao")
-    private String decricao;
+    private String descricao;
 
     public Cerimonial(){
 
     }
 
-    public Cerimonial(String decricao,Integer id){
-        this.decricao = decricao;
+    public Cerimonial(String descricao, Integer id){
+        this.descricao = descricao;
         this.id = id;
     }
     public Integer getId() {
@@ -35,11 +34,11 @@ public class Cerimonial {
         this.id = id;
     }
 
-    public String getDecricao() {
-        return decricao;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDecricao(String decricao) {
-        this.decricao = decricao;
+    public void setDescricao(String decricao) {
+        this.descricao = decricao;
     }
 }

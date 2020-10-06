@@ -23,10 +23,10 @@ public class UsuarioResource {
     @Path("/salvar")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response salvar(Usuario usuario) {
+    public Response saveUser(Usuario usuario) {
 
         try {
-            usuarioAS.salvar(usuario);
+            usuarioAS.save(usuario);
         } catch (Exception e) {
             Response.status(500);
             System.out.println("Erro ao Salvar Usuario" + e.getMessage());
@@ -37,24 +37,24 @@ public class UsuarioResource {
     @GET
     @Path("/listar")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listar() {
-        return Response.status(200).entity(usuarioAS.listar()).build();
+    public Response findAllUsers() {
+        return Response.status(200).entity(usuarioAS.findAll()).build();
     }
 
     @PUT
     @Path("/editar/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response editar(@PathParam("id") Integer id, Usuario usuario) {
+    public Response updateUser(@PathParam("id") Integer id, Usuario usuario) {
         usuario.setId(id);
-        return Response.ok(200).entity(usuarioAS.editar(usuario)).build();
+        return Response.ok(200).entity(usuarioAS.update(usuario)).build();
     }
 
     @DELETE
     @Path("/excluir/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response excluir(@PathParam("id") Integer id) {
-        usuarioAS.excluir(id);
+    public Response deleteUser(@PathParam("id") Integer id) {
+        usuarioAS.delete(id);
         return Response.ok(200).build();
     }
 

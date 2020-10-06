@@ -6,9 +6,9 @@ import java.io.Serializable;
 @Entity
 @Table(name = "tipoevento")
 @NamedQueries({
-        @NamedQuery(name= "TipoEvento.FindAll",query = "SELECT te FROM TipoEvento te ORDER BY te.id"),
-        @NamedQuery(name="TipoEvento.FindById",query="SELECT te FROM TipoEvento te WHERE te.id = :id"),
-        @NamedQuery(name = "TipoEvento.FindByEvent",query = "SELECT te FROM TipoEvento te WHERE te.descricao =: descricao")
+        @NamedQuery(name = "TipoEvento.FindAll", query = "SELECT te FROM TipoEvento te ORDER BY te.id"),
+        @NamedQuery(name = "TipoEvento.FindById", query = "SELECT te FROM TipoEvento te WHERE te.id =:id"),
+        @NamedQuery(name = "TipoEvento.FindByEvent", query = "SELECT te FROM TipoEvento te WHERE te.descricao =:descricao")
 })
 public class TipoEvento implements Serializable {
 
