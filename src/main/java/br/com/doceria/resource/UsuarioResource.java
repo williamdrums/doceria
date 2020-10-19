@@ -13,9 +13,14 @@ import javax.ws.rs.core.Response;
 
 import br.com.doceria.as.UsuarioAS;
 import br.com.doceria.entity.Usuario;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.logging.LogManager;
 
 @Path("/usuario")
 public class UsuarioResource {
+private static final Logger logger = LoggerFactory.getLogger(UsuarioResource.class);
 
     UsuarioAS usuarioAS = new UsuarioAS();
 
@@ -25,19 +30,22 @@ public class UsuarioResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response saveUser(Usuario usuario) {
 
+        logger.info("Iniciando  Aplicação");
         try {
             usuarioAS.save(usuario);
+            return Response.status(201).entity(usuario).build();
         } catch (Exception e) {
             Response.status(500);
-            System.out.println("Erro ao Salvar Usuario" + e.getMessage());
+            logger.error("Erro ao tentar salvar usuario"+e);
+            return Response.accepted().build();
         }
-        return Response.status(201).entity(usuario).build();
     }
 
     @GET
     @Path("/listar")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAllUsers() {
+        logger.info("Iniciando Listagem de Usuarios Cadastrados");
         return Response.status(200).entity(usuarioAS.findAll()).build();
     }
 
@@ -46,7 +54,9 @@ public class UsuarioResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUser(@PathParam("id") Integer id, Usuario usuario) {
+
         usuario.setId(id);
+        logger.info("Atulizando Usuario "+usuario.getNome());
         return Response.ok(200).entity(usuarioAS.update(usuario)).build();
     }
 
@@ -54,6 +64,7 @@ public class UsuarioResource {
     @Path("/excluir/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteUser(@PathParam("id") Integer id) {
+        logger.info("Excluindo Usuario");
         usuarioAS.delete(id);
         return Response.ok(200).build();
     }

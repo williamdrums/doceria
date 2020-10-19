@@ -3,11 +3,15 @@ package br.com.doceria.as;
 import br.com.doceria.dao.ClienteDAO;
 import br.com.doceria.entity.Cliente;
 import br.com.doceria.util.JPAUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 public class ClienteAS {
+
+    private static final Logger logger = LoggerFactory.getLogger(ClienteAS.class);
 
     public ClienteAS() {
     }
@@ -17,31 +21,39 @@ public class ClienteAS {
 
     public void save(Cliente cliente) {
         try {
+            logger.info("Salvando Cliente: " + cliente.getNome());
             clienteDAO.save(cliente);
         } catch (Exception e) {
-            System.out.println("Erro ao Salvar Cliente");
+            logger.error(500 + "Erro ao Salvar Cliente:" + cliente.getNome());
         }
     }
 
     public Cliente update(Cliente cliente) {
-        Cliente clienteEditado = clienteDAO.findById(cliente.getId());
-
-        clienteEditado.setNome(cliente.getNome());
-        clienteEditado.setTelefone(cliente.getTelefone());
-        clienteEditado.setEmail(cliente.getEmail());
-        Cliente clienteAtualizado = clienteDAO.update(clienteEditado);
+        Cliente clienteUpdate = clienteDAO.findById(cliente.getId());
+        Cliente clienteAtualizado = null;
+        try {
+            logger.info("Atualizando Clinete:" + cliente.getNome());
+            clienteUpdate.setNome(cliente.getNome());
+            clienteUpdate.setTelefone(cliente.getTelefone());
+            clienteUpdate.setEmail(cliente.getEmail());
+            clienteAtualizado = clienteDAO.update(clienteUpdate);
+        } catch (Exception ex) {
+            logger.error("Erro ao atualizar Cliente:" + cliente.getNome());
+        }
         return clienteAtualizado;
     }
 
     public List<Cliente> findAll() {
+        logger.info("Buscando todos os Clientes");
         return clienteDAO.findAll();
     }
 
     public void delete(Integer id) {
         try {
+            logger.info("Deletando Cliente");
             clienteDAO.delete(id);
         } catch (Exception e) {
-            System.out.println("Erro ao tentar excluir usuario");
+            logger.error("Erro ao tentar excluir usuario", 500);
         }
         clienteDAO.delete(id);
     }
